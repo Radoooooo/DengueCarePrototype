@@ -8,7 +8,6 @@ class UserSettingsPage extends StatefulWidget {
 }
 
 class _UserSettingsPageState extends State<UserSettingsPage> {
-  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,34 +47,6 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
           ),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        animationDuration: const Duration(seconds: 1),
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        destinations: _navBarItems,
-      ),
     );
   }
 }
-
-const _navBarItems = [
-  NavigationDestination(
-    icon: Icon(Icons.home_outlined),
-    selectedIcon: Icon(Icons.home_rounded),
-    label: 'Home',
-  ),
-  NavigationDestination(
-    icon: Icon(Icons.chat_outlined),
-    selectedIcon: Icon(Icons.chat_rounded),
-    label: 'Chat',
-  ),
-  NavigationDestination(
-    icon: Icon(Icons.settings_outlined),
-    selectedIcon: Icon(Icons.settings_rounded),
-    label: 'Settings',
-  ),
-];
