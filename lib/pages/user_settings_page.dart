@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class UserSettingsPage extends StatefulWidget {
+  const UserSettingsPage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<UserSettingsPage> createState() => _UserSettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _UserSettingsPageState extends State<UserSettingsPage> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
