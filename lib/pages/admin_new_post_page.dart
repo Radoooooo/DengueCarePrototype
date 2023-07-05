@@ -60,7 +60,7 @@ class _AdminNewPostPageState extends State<AdminNewPostPage> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        const Text('Max image size: 10 MB')
+                        const Text('Max image size: \n10 MB')
                       ],
                     ),
                   ],

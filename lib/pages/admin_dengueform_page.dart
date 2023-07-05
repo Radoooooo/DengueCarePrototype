@@ -182,12 +182,12 @@ class _AdminDengueFormPageState extends State<AdminDengueFormPage> {
                       _gap(),
                       Row(
                         children: [
-                          const Text("Vaccinated with Dengue Vaccine?"),
-                          const SizedBox(width: 10),
+                          const Text("Vaccinated with \nDengue Vaccine?"),
+                          const SizedBox(width: 50),
                           Expanded(
                             child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 4),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8.0)),
@@ -239,11 +239,11 @@ class _AdminDengueFormPageState extends State<AdminDengueFormPage> {
                       Row(
                         children: [
                           const Text("Clinical\nClassification "),
-                          const SizedBox(width: 10),
-                          Expanded(
+                          const SizedBox(width: 4),
+                          Flexible(
                             child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 4),
+                              // padding: const EdgeInsets.symmetric(
+                              //     horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8.0)),
@@ -462,7 +462,7 @@ class _AdminDengueFormPageState extends State<AdminDengueFormPage> {
                         children: [
                           const Text("Case\nClassification "),
                           const SizedBox(width: 10),
-                          Expanded(
+                          Flexible(
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
