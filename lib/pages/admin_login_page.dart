@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:prototype_denguecare/pages/admin_login_page.dart';
-import 'package:prototype_denguecare/pages/user_register_page.dart';
+import 'package:prototype_denguecare/pages/user_login_page.dart';
 
-class UserLoginPage extends StatefulWidget {
-  const UserLoginPage({Key? key}) : super(key: key);
+class AdminLoginPage extends StatefulWidget {
+  const AdminLoginPage({Key? key}) : super(key: key);
 
   @override
-  State<UserLoginPage> createState() => _UserLoginPageState();
+  State<AdminLoginPage> createState() => _AdminLoginPageState();
 }
 
-class _UserLoginPageState extends State<UserLoginPage> {
+class _AdminLoginPageState extends State<AdminLoginPage> {
   bool _isPasswordVisible = false;
   bool _rememberMe = false;
 
@@ -36,7 +35,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        "",
+                        "Admin Login",
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ),
@@ -102,16 +101,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           )),
                     ),
                     _gap(),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UserRegisterPage()));
-                      },
-                      child: const Text(
-                        "Don't have an account? Sign up now!",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
                     CheckboxListTile(
                       value: _rememberMe,
                       onChanged: (value) {
@@ -151,7 +140,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           // }
                           Navigator.pushReplacementNamed(
                             context,
-                            'mainpage',
+                            'adminmainpage',
                           );
                         },
                       ),
@@ -183,14 +172,14 @@ class _UserLoginPageState extends State<UserLoginPage> {
                         child: const Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text(
-                            'Admin Login',
+                            'User Login',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const AdminLoginPage()));
+                              builder: (context) => const UserLoginPage()));
                         },
                       ),
                     ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:prototype_denguecare/pages/user_home_page.dart';
 
 class UserOtpPage extends StatefulWidget {
   const UserOtpPage({super.key});
@@ -68,11 +67,10 @@ class _UserOtpPageState extends State<UserOtpPage> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const UserHomePage()),
-                    (route) => false);
+                Navigator.pushReplacementNamed(
+                  context,
+                  'mainpage',
+                );
               },
               child: const Text('Submit'),
             ),

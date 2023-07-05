@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NewPostPage extends StatefulWidget {
-  const NewPostPage({super.key});
+class AdminNewPostPage extends StatefulWidget {
+  const AdminNewPostPage({super.key});
 
   @override
-  State<NewPostPage> createState() => _NewPostPageState();
+  State<AdminNewPostPage> createState() => _AdminNewPostPageState();
 }
 
-class _NewPostPageState extends State<NewPostPage> {
+class _AdminNewPostPageState extends State<AdminNewPostPage> {
   //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class _NewPostPageState extends State<NewPostPage> {
       appBar: AppBar(
         title: const Text('Create Post'),
         leading: const BackButton(),
-        actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.check))
-        ],
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.check))],
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -55,7 +53,8 @@ class _NewPostPageState extends State<NewPostPage> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: ElevatedButton.icon(
-                            icon: const Icon(Icons.add_photo_alternate_outlined),
+                            icon:
+                                const Icon(Icons.add_photo_alternate_outlined),
                             onPressed: () {},
                             label: const Text('Upload an image'),
                           ),
@@ -66,7 +65,6 @@ class _NewPostPageState extends State<NewPostPage> {
                     ),
                   ],
                 ),
-              
               ],
             ),
           ),

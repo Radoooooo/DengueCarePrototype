@@ -8,7 +8,6 @@ class AdminSettingsPage extends StatefulWidget {
 }
 
 class _AdminSettingsPageState extends State<AdminSettingsPage> {
-  int _selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +40,7 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
             ),
             onTap: () {},
           ),
-           ListTile(
+          ListTile(
             title: const Text('Data Analysis'),
             leading: const Icon(
               Icons.add_chart_sharp,
@@ -50,7 +49,6 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
             onTap: () {},
           ),
           ListTile(
-            
             title: const Text(
               'Logout',
               style: TextStyle(
@@ -61,38 +59,33 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
               Icons.logout_rounded,
               color: Colors.red,
             ),
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text("Logout"),
+                      actionsOverflowButtonSpacing: 20,
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel")),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                  context, 'adminloginpage');
+                            },
+                            child: const Text("Logout")),
+                      ],
+                      content: const Text("Do you really want to logout?"),
+                    );
+                  });
+            },
           ),
         ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        animationDuration: const Duration(seconds: 1),
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        destinations: _navBarItems,
       ),
     );
   }
 }
-
-const _navBarItems = [
-  NavigationDestination(
-    icon: Icon(Icons.home_outlined),
-    selectedIcon: Icon(Icons.home_rounded),
-    label: 'Home',
-  ),
-  NavigationDestination(
-    icon: Icon(Icons.chat_outlined),
-    selectedIcon: Icon(Icons.chat_rounded),
-    label: 'Chat',
-  ),
-  NavigationDestination(
-    icon: Icon(Icons.more_horiz_outlined),
-    selectedIcon: Icon(Icons.more_horiz_rounded),
-    label: 'More',
-  ),
-];

@@ -13,6 +13,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: [
@@ -43,7 +44,30 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
               Icons.logout_rounded,
               color: Colors.red,
             ),
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text("Logout"),
+                      actionsOverflowButtonSpacing: 20,
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel")),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                  context, 'loginpage');
+                            },
+                            child: const Text("Logout")),
+                      ],
+                      content: const Text("Do you really want to logout?"),
+                    );
+                  });
+            },
           ),
         ],
       ),

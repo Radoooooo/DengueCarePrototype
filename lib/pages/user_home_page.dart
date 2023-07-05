@@ -79,7 +79,7 @@ class _UserHomePageState extends State<UserHomePage> {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    Image.asset('images/boba-bar-graph.png'),
+                    Image.asset('images/boba-two-graphs.png'),
                     const ListTile(
                       title: Text('Dengue Cases as of June 01, 2023'),
                       trailing: Icon(Icons.arrow_forward_ios_rounded),

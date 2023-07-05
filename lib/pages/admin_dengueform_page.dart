@@ -75,7 +75,7 @@ class _AdminDengueFormPageState extends State<AdminDengueFormPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dengue Form'),
-        leading: BackButton(onPressed: () {}),
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: Form(

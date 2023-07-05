@@ -16,15 +16,13 @@ class _AdminAnnouncementPageState extends State<AdminAnnouncementPage> {
   final List<bool> _selectedChoice = <bool>[true, false];
   bool vertical = false;
   String? value;
-  final _recipient = ['All registered users', 'All registered numbers'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Announcement'),
-        leading: BackButton(
-          onPressed: () {},
-        ),
+        leading: const BackButton(),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -81,35 +79,6 @@ class _AdminAnnouncementPageState extends State<AdminAnnouncementPage> {
                           ),
                           isSelected: _selectedChoice,
                           children: choices,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Wrap(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Text('Recipients : '),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 4),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(8.0)),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              value: value,
-                              items: _recipient.map(buildMenuItem).toList(),
-                              onChanged: (value) =>
-                                  setState(() => this.value = value),
-                            ),
-                          ),
                         ),
                       ],
                     ),
