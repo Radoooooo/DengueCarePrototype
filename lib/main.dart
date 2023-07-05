@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prototype_denguecare/pages/user_chat_page.dart';
+import 'package:prototype_denguecare/pages/user_report_page.dart';
 import 'package:prototype_denguecare/pages/user_home_page.dart';
 import 'package:prototype_denguecare/pages/user_login_page.dart';
 import 'package:prototype_denguecare/pages/user_settings_page.dart';
@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
   final screens = [
     const UserHomePage(),
-    const UserChatPage(),
+    const UserReportPage(),
     const UserSettingsPage(),
   ];
 
@@ -65,9 +65,9 @@ const _navBarItems = [
     label: 'Home',
   ),
   NavigationDestination(
-    icon: Icon(Icons.chat_outlined),
-    selectedIcon: Icon(Icons.chat_rounded),
-    label: 'Chat',
+    icon: Icon(Icons.report_outlined),
+    selectedIcon: Icon(Icons.report_rounded),
+    label: 'Report',
   ),
   NavigationDestination(
     icon: Icon(Icons.settings_outlined),
