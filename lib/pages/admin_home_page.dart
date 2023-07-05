@@ -75,7 +75,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   color: Colors.green,
                 ),
                 child: Text(
-                  'Drawer Header',
+                  'Welcome Admin!',
                   style: TextStyle(fontSize: 24, color: Colors.white),
                 ),
               ),
