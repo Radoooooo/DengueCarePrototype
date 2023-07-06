@@ -133,9 +133,9 @@ const _navBarItemsAdmin = [
     label: 'Report',
   ),
   NavigationDestination(
-    icon: Icon(Icons.edit_document),
-    selectedIcon: Icon(Icons.edit_document),
-    label: 'Encode',
+    icon: Icon(Icons.map_outlined),
+    selectedIcon: Icon(Icons.map_rounded),
+    label: 'Map',
   ),
   NavigationDestination(
     icon: Icon(Icons.auto_graph_outlined),

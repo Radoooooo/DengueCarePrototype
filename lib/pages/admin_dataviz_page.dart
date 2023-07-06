@@ -8,6 +8,26 @@ class AdminDataVizPage extends StatefulWidget {
 }
 
 class _AdminDataVizPageState extends State<AdminDataVizPage> {
+  DateTimeRange? _selectedDateRange;
+  void _show() async {
+    final DateTimeRange? result = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime(2022, 1, 1),
+      lastDate: DateTime.now(),
+      currentDate: DateTime.now(),
+      saveText: 'Done',
+    );
+
+    if (result != null) {
+      // Rebuild the UI
+      //print(result.start.toString());
+      setState(() {
+        _selectedDateRange = result;
+      });
+    }
+  }
+
+  bool _isShow = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +44,74 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            _gap(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(width: 16),
+                OutlinedButton(
+                  onPressed: () {
+                    setState(
+                      () {
+                        _isShow = !_isShow;
+                      },
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    //side: const BorderSide(color: Colors.red, width: 2),
+                  ),
+                  child: const Text('Filter'),
+                ),
+              ],
+            ),
+            _gap(),
+            Visibility(
+              visible: _isShow,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: _show,
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      //side: const BorderSide(color: Colors.red, width: 2),
+                    ),
+                    child: const Text('Date Range'),
+                  ),
+                  const SizedBox(width: 16),
+                  _selectedDateRange == null
+                      ? const Text("Select a date")
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                "Start date: ${_selectedDateRange?.start.toString().split(' ')[0]}"),
+                            const SizedBox(height: 4),
+                            Text(
+                                "End date: ${_selectedDateRange?.end.toString().split(' ')[0]}"),
+                          ],
+                        ),
+                  const SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(
+                        () {
+                          _selectedDateRange == null;
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      //side: const BorderSide(color: Colors.red, width: 2),
+                    ),
+                    child: const Text('Clear'),
+                  ),
+                ],
+              ),
+            ),
+            _gap(),
             GestureDetector(
               onTap: (() {}),
               child: Container(
@@ -117,3 +205,5 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
     );
   }
 }
+
+Widget _gap() => const SizedBox(height: 8);
