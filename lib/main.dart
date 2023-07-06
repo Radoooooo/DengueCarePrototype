@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:prototype_denguecare/pages/admin_dataviz_page.dart';
-import 'package:prototype_denguecare/pages/admin_dengueform_page.dart';
+import 'package:prototype_denguecare/pages/admin_dengue_heat_map_page.dart';
 import 'package:prototype_denguecare/pages/admin_home_page.dart';
 import 'package:prototype_denguecare/pages/admin_login_page.dart';
+import 'package:prototype_denguecare/pages/user_dengue_heat_map_page.dart';
 import 'package:prototype_denguecare/pages/user_otp_page.dart';
 import 'package:prototype_denguecare/pages/user_report_page.dart';
 import 'package:prototype_denguecare/pages/user_home_page.dart';
@@ -45,6 +46,7 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
   final screens = [
     const UserHomePage(),
+    const UserDengueHeatMapPage(),
     const UserReportPage(),
     const UserSettingsPage(),
   ];
@@ -75,6 +77,11 @@ const _navBarItemsUser = [
     label: 'Home',
   ),
   NavigationDestination(
+    icon: Icon(Icons.map_outlined),
+    selectedIcon: Icon(Icons.map_rounded),
+    label: 'Map',
+  ),
+  NavigationDestination(
     icon: Icon(Icons.report_outlined),
     selectedIcon: Icon(Icons.report_rounded),
     label: 'Report',
@@ -98,7 +105,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
   final screens = [
     const AdminHomePage(),
     const AdminReportPage(),
-    const AdminDengueFormPage(),
+    const AdminDengueHeatMapPage(),
     const AdminDataVizPage(),
   ];
 

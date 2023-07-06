@@ -1,75 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class AdminDengueFormPage extends StatefulWidget {
-  const AdminDengueFormPage({super.key});
+class AdminDengueHeatMapPage extends StatefulWidget {
+  const AdminDengueHeatMapPage({super.key});
 
   @override
-  State<AdminDengueFormPage> createState() => _AdminDengueFormPageState();
+  State<AdminDengueHeatMapPage> createState() => _AdminDengueHeatMapPageState();
 }
 
-class _AdminDengueFormPageState extends State<AdminDengueFormPage> {
-  String? valueAdmitted;
-  String? valueVaccine;
-  String? clinicalClass;
-  String? caseClass;
-  String? ns1;
-  String? igg;
-  String? igm;
-  String? pcr;
-  String? outcome;
-  final listvalueAdmitted = ['Yes', 'No'];
-  final listvalueVaccine = ['Yes', 'No'];
-  final listclinicalClass = [
-    'N: No warning signs',
-    'W: With warning signs',
-    'S: Severe Dengue'
-  ];
-  final listcaseClass = ['S : Suspect', 'P : Probable', 'C : Confirmed'];
-  final listNS1 = [
-    'P : Positive',
-    'N : Negative',
-    'E : Equivocal',
-    'PR : Pending Result',
-    'N/A : Not Done'
-  ];
-  final listIgg = [
-    'P : Positive',
-    'N : Negative',
-    'E : Equivocal',
-    'PR : Pending Result',
-    'N/A : Not Done'
-  ];
-  final listIgm = [
-    'P : Positive',
-    'N : Negative',
-    'E : Equivocal',
-    'PR : Pending Result',
-    'N/A : Not Done'
-  ];
-  final listPcr = [
-    'P : Positive',
-    'N : Negative',
-    'E : Equivocal',
-    'PR : Pending Result',
-    'N/A : Not Done'
-  ];
-  final listOutcome = ['A : Alive', 'D : Deceased'];
-  DateTime selectedDate = DateTime.now();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class _AdminDengueHeatMapPageState extends State<AdminDengueHeatMapPage> {
   static const _actionTitles = ['Create Post', 'Upload Photo', 'Upload Video'];
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(1999, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
 
   void _showAction(BuildContext context, int index) {
     showDialog<void>(
@@ -95,7 +35,16 @@ class _AdminDengueFormPageState extends State<AdminDengueFormPage> {
         title: const Text('Dengue Heat Map'),
         automaticallyImplyLeading: false,
       ),
-      body: const Column(),
+      body: const Stack(
+        fit: StackFit.expand,
+        children: [
+          Image(
+            image: AssetImage('images/img.png'),
+            fit: BoxFit.cover,
+          ),
+          // other irrelevent children here
+        ],
+      ),
       floatingActionButton: ExpandableFab(
         distance: 112,
         children: [

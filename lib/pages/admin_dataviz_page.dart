@@ -1,4 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+const List<Widget> choices = <Widget>[
+  Text('Week'),
+  Text('Month'),
+  Text('Year'),
+];
+final List<DengueData> chartData = [
+  DengueData(4, 1),
+  DengueData(5, 2),
+  DengueData(6, 2),
+  DengueData(7, 3),
+  DengueData(8, 4)
+];
 
 class AdminDataVizPage extends StatefulWidget {
   const AdminDataVizPage({super.key});
@@ -8,6 +22,8 @@ class AdminDataVizPage extends StatefulWidget {
 }
 
 class _AdminDataVizPageState extends State<AdminDataVizPage> {
+  final List<bool> _selectedChoice = <bool>[true, false, false];
+  bool vertical = false;
   DateTimeRange? _selectedDateRange;
   void _show() async {
     final DateTimeRange? result = await showDateRangePicker(
@@ -49,7 +65,7 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(width: 16),
-                OutlinedButton(
+                TextButton(
                   onPressed: () {
                     setState(
                       () {
@@ -68,46 +84,92 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
             _gap(),
             Visibility(
               visible: _isShow,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: Column(
                 children: [
-                  const SizedBox(width: 16),
-                  ElevatedButton(
-                    onPressed: _show,
-                    style: ElevatedButton.styleFrom(
-                      shape: const StadiumBorder(),
-                      //side: const BorderSide(color: Colors.red, width: 2),
-                    ),
-                    child: const Text('Date Range'),
-                  ),
-                  const SizedBox(width: 16),
-                  _selectedDateRange == null
-                      ? const Text("Select a date")
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                "Start date: ${_selectedDateRange?.start.toString().split(' ')[0]}"),
-                            const SizedBox(height: 4),
-                            Text(
-                                "End date: ${_selectedDateRange?.end.toString().split(' ')[0]}"),
-                          ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: 16),
+                      _selectedDateRange == null
+                          ? const Text("Select a date")
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    "Start date: ${_selectedDateRange?.start.toString().split(' ')[0]}"),
+                                const SizedBox(height: 4),
+                                Text(
+                                    "End date: ${_selectedDateRange?.end.toString().split(' ')[0]}"),
+                              ],
+                            ),
+                      const SizedBox(width: 16),
+                      ElevatedButton(
+                        onPressed: _show,
+                        style: ElevatedButton.styleFrom(
+                          shape: const StadiumBorder(),
+                          //side: const BorderSide(color: Colors.red, width: 2),
                         ),
-                  const SizedBox(width: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(
-                        () {
-                          _selectedDateRange == null;
-                        },
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: const StadiumBorder(),
-                      //side: const BorderSide(color: Colors.red, width: 2),
-                    ),
-                    child: const Text('Clear'),
+                        child: const Text('Date Range'),
+                      ),
+                      const SizedBox(width: 16),
+                    ],
                   ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Wrap(
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(width: 16),
+                              const Text('Filter by : '),
+                              const SizedBox(width: 16),
+                              ToggleButtons(
+                                direction:
+                                    vertical ? Axis.vertical : Axis.horizontal,
+                                onPressed: (int index) {
+                                  // All buttons are selectable.
+                                  setState(() {
+                                    for (int i = 0;
+                                        i < _selectedChoice.length;
+                                        i++) {
+                                      _selectedChoice[i] = i == index;
+                                    }
+                                  });
+                                },
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(8)),
+                                selectedBorderColor: Colors.green[700],
+                                selectedColor: Colors.white,
+                                fillColor: Colors.green[200],
+                                color: Colors.green[400],
+                                constraints: const BoxConstraints(
+                                  minHeight: 40.0,
+                                  minWidth: 80.0,
+                                ),
+                                isSelected: _selectedChoice,
+                                children: choices,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            _gap(),
+            Container(
+              child: SfCartesianChart(
+                series: <ChartSeries>[
+                  // Renders line chart
+
+                  LineSeries<DengueData, double>(
+                      dataSource: chartData,
+                      xValueMapper: (DengueData data, _) => data.week,
+                      yValueMapper: (DengueData data, _) => data.numbers),
                 ],
               ),
             ),
@@ -207,3 +269,9 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
 }
 
 Widget _gap() => const SizedBox(height: 8);
+
+class DengueData {
+  DengueData(this.week, this.numbers);
+  final double week;
+  final double numbers;
+}
