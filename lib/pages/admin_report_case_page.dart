@@ -43,20 +43,9 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text("Report a case",
-                            style: Theme.of(context).textTheme.headlineSmall),
-                      ),
-                      _gap(),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text("Please enter the following details.",
-                            style: Theme.of(context).textTheme.bodySmall,
-                            textAlign: TextAlign.center),
-                      ),
                       _gap(),
                       TextFormField(
+                        enabled: false,
                         decoration: const InputDecoration(
                           labelText: 'Name',
                           prefixIcon: Icon(Icons.person),

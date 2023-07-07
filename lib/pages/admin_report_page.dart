@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prototype_denguecare/pages/admin_report_case_page.dart';
 import 'package:prototype_denguecare/pages/admin_report_content_model.dart';
 import 'package:prototype_denguecare/pages/admin_report_list.dart';
 
@@ -36,18 +35,6 @@ class _AdminReportPageState extends State<AdminReportPage> {
       appBar: AppBar(
         title: const Text('Reports'),
         automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AdminReportCasePage(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

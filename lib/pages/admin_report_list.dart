@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'admin_report_case_page.dart';
+
 class AdminReportList extends StatefulWidget {
   final String name;
   final String contactnumber;
@@ -31,7 +33,10 @@ class _AdminReportListState extends State<AdminReportList> {
         children: [
           Text(widget.time),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const AdminReportCasePage()));
+            },
             icon: const Icon(Icons.arrow_forward),
           ),
         ],

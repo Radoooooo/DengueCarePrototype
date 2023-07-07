@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-const List<Widget> choices = <Widget>[
+const List<Widget> filterChoices = <Widget>[
   Text('Week'),
   Text('Month'),
   Text('Year'),
@@ -60,6 +60,22 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              crossAxisSpacing: 4.0,
+              mainAxisSpacing: 8.0,
+              children: List.generate(
+                choices.length,
+                (index) {
+                  return Center(
+                    child: SelectCard(
+                      choice: choices[index],
+                    ),
+                  );
+                },
+              ),
+            ),
             _gap(),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -149,7 +165,7 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
                                   minWidth: 80.0,
                                 ),
                                 isSelected: _selectedChoice,
-                                children: choices,
+                                children: filterChoices,
                               ),
                             ],
                           ),
@@ -161,17 +177,15 @@ class _AdminDataVizPageState extends State<AdminDataVizPage> {
               ),
             ),
             _gap(),
-            Container(
-              child: SfCartesianChart(
-                series: <ChartSeries>[
-                  // Renders line chart
+            SfCartesianChart(
+              series: <ChartSeries>[
+                // Renders line chart
 
-                  LineSeries<DengueData, double>(
-                      dataSource: chartData,
-                      xValueMapper: (DengueData data, _) => data.week,
-                      yValueMapper: (DengueData data, _) => data.numbers),
-                ],
-              ),
+                LineSeries<DengueData, double>(
+                    dataSource: chartData,
+                    xValueMapper: (DengueData data, _) => data.week,
+                    yValueMapper: (DengueData data, _) => data.numbers),
+              ],
             ),
             _gap(),
             GestureDetector(
@@ -274,4 +288,39 @@ class DengueData {
   DengueData(this.week, this.numbers);
   final double week;
   final double numbers;
+}
+
+class Choice {
+  const Choice({required this.title, required this.number});
+  final String title;
+  final String number;
+}
+
+const List<Choice> choices = <Choice>[
+  Choice(title: 'Reported Cases : July', number: "12"),
+  Choice(title: 'Confirmed', number: "5")
+];
+
+class SelectCard extends StatelessWidget {
+  const SelectCard({Key? key, required this.choice}) : super(key: key);
+  final Choice choice;
+
+  @override
+  Widget build(BuildContext context) {
+    //final TextStyle textStyle = Theme.of(context).textTheme.display1;
+    return Card(
+        color: Colors.white38,
+        child: Center(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  choice.number,
+                  style: const TextStyle(fontSize: 50),
+                )),
+                Text(choice.title),
+              ]),
+        ));
+  }
 }
