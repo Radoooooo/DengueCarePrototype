@@ -15,7 +15,7 @@ class _AdminManageAccountsPageState extends State<AdminManageAccountsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Manage Account'),
+        title: const Text('Manage Admin'),
         leading: const BackButton(),
         actions: [
           IconButton(

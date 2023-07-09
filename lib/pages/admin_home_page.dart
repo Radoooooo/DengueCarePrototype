@@ -62,7 +62,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 onTap: () {},
               ),
               ListTile(
-                title: const Text('Manage Admin Accounts'),
+                title: const Text('Manage Admins'),
                 leading: const Icon(
                   Icons.person_pin_rounded,
                   color: Colors.black,
