@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prototype_denguecare/pages/admin_add_account_page.dart';
+import 'package:prototype_denguecare/pages/admin_manage_accounts.dart';
 import 'dart:math' as math;
 import 'package:prototype_denguecare/pages/admin_announcement_page.dart';
 import 'package:prototype_denguecare/pages/admin_new_post_page.dart';
@@ -62,15 +62,15 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 onTap: () {},
               ),
               ListTile(
-                title: const Text('Add Admin Account'),
+                title: const Text('Manage Admin Accounts'),
                 leading: const Icon(
-                  Icons.person_add,
+                  Icons.person_pin_rounded,
                   color: Colors.black,
                 ),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => const AdminAddAccountPage()),
+                        builder: (context) => const AdminManageAccountsPage()),
                   );
                 },
               ),
