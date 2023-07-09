@@ -9,7 +9,7 @@ class UserDengueHeatMapPage extends StatefulWidget {
 }
 
 class _UserDengueHeatMapPageState extends State<UserDengueHeatMapPage> {
-  static const _actionTitles = ['Create Post', 'Upload Photo', 'Upload Video'];
+  static const _actionTitles = ['..', '..', '..'];
 
   void _showAction(BuildContext context, int index) {
     showDialog<void>(
@@ -50,15 +50,15 @@ class _UserDengueHeatMapPageState extends State<UserDengueHeatMapPage> {
         children: [
           ActionButton(
             onPressed: () => _showAction(context, 0),
-            icon: const Icon(Icons.format_size),
+            icon: const Icon(Icons.circle),
           ),
           ActionButton(
             onPressed: () => _showAction(context, 1),
-            icon: const Icon(Icons.insert_photo),
+            icon: const Icon(Icons.circle),
           ),
           ActionButton(
             onPressed: () => _showAction(context, 2),
-            icon: const Icon(Icons.videocam),
+            icon: const Icon(Icons.circle),
           ),
         ],
       ),
@@ -204,7 +204,7 @@ class _ExpandableFabState extends State<ExpandableFab>
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
             onPressed: _toggle,
-            child: const Icon(Icons.create),
+            child: const Icon(Icons.navigation_rounded),
           ),
         ),
       ),
