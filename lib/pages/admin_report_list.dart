@@ -6,12 +6,14 @@ class AdminReportList extends StatefulWidget {
   final String name;
   final String contactnumber;
   final String time;
+  final String status;
   final bool isMessageRead;
   const AdminReportList(
       {super.key,
       required this.name,
       required this.contactnumber,
       required this.time,
+      required this.status,
       required this.isMessageRead});
 
   @override
@@ -25,8 +27,12 @@ class _AdminReportListState extends State<AdminReportList> {
       title: Text(
         widget.name,
       ),
-      subtitle: Text(
-        widget.contactnumber,
+      subtitle: Row(
+        children: [
+          Text(widget.contactnumber),
+          const SizedBox(width: 8),
+          Text(widget.status),
+        ],
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,

@@ -4,6 +4,10 @@ class ReportContents {
   String name;
   String contactnumber;
   String time;
+  String status;
   ReportContents(
-      {required this.name, required this.contactnumber, required this.time});
+      {required this.name,
+      required this.contactnumber,
+      required this.time,
+      required this.status});
 }

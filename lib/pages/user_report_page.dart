@@ -19,6 +19,8 @@ class _UserReportPageState extends State<UserReportPage> {
   bool _vomiting = false;
   bool _diarrhea = false;
   bool _flushedSkin = false;
+  String? value;
+  final sex = ['Male', 'Female'];
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +64,38 @@ class _UserReportPageState extends State<UserReportPage> {
                           prefixIcon: Icon(Icons.person),
                           border: OutlineInputBorder(),
                         ),
+                      ),
+                      _gap(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                labelText: 'Age',
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  items: sex.map(buildMenuItem).toList(),
+                                  value: value,
+                                  hint: const Text('Sex'),
+                                  onChanged: (value) =>
+                                      setState(() => this.value = value),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       _gap(),
                       IntlPhoneField(
@@ -301,3 +335,7 @@ class _UserReportPageState extends State<UserReportPage> {
 }
 
 Widget _gap() => const SizedBox(height: 16);
+DropdownMenuItem<String> buildMenuItem(String sex) => DropdownMenuItem(
+      value: sex,
+      child: Text(sex),
+    );

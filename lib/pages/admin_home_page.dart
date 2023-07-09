@@ -114,35 +114,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 onTap: (() {}),
                 child: Container(
                   margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 2,
-                        blurRadius: 2,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      Image.asset('images/boba-two-graphs.png'),
-                      const ListTile(
-                        title: Text('Dengue Cases as of June 01, 2023'),
-                        trailing: Icon(Icons.arrow_forward_ios_rounded),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: (() {}),
-                child: Container(
-                  margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),

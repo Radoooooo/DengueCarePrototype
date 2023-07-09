@@ -9,23 +9,35 @@ class AdminReportCasePage extends StatefulWidget {
 }
 
 class _AdminReportCasePageState extends State<AdminReportCasePage> {
-  bool _headache = false;
+  bool _headache = true;
   bool _bodymalaise = false;
   bool _myalgia = false;
   bool _arthralgia = false;
   bool _retroOrbitalPain = false;
   bool _anorexia = false;
-  bool _nausea = false;
-  bool _vomiting = false;
+  bool _nausea = true;
+  bool _vomiting = true;
   bool _diarrhea = false;
-  bool _flushedSkin = false;
+  bool _flushedSkin = true;
+  String? value;
+  final sex = ['Male', 'Female'];
+  String? valueStatus;
+  final status = ['Suspect', 'Probable', 'Confirmed'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Report a case'),
+        title: const Text('Case report'),
         leading: const BackButton(),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.check),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Form(
@@ -43,20 +55,75 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Status : "),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 4),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                items: status.map(buildMenuItemStatus).toList(),
+                                value: valueStatus,
+                                hint: const Text('Status'),
+                                onChanged: (value) =>
+                                    setState(() => valueStatus = value),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       _gap(),
                       TextFormField(
                         enabled: false,
                         decoration: const InputDecoration(
-                          labelText: 'Name',
+                          labelText: 'Jane Russel',
                           prefixIcon: Icon(Icons.person),
                           border: OutlineInputBorder(),
                         ),
                       ),
                       _gap(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              enabled: false,
+                              decoration: const InputDecoration(
+                                labelText: '8',
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  items: sex.map(buildMenuItem).toList(),
+                                  value: sex[1],
+                                  //hint: const Text('Sex'),
+                                  onChanged: null,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      _gap(),
                       IntlPhoneField(
+                        enabled: false,
                         initialCountryCode: 'PH',
                         decoration: const InputDecoration(
-                          labelText: 'Phone Number',
+                          labelText: '9151234123',
                           border: OutlineInputBorder(
                             borderSide: BorderSide(),
                           ),
@@ -66,10 +133,11 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                       ),
                       _gap(),
                       TextFormField(
+                        enabled: false,
                         keyboardType: TextInputType.multiline,
                         maxLines: 4,
                         decoration: const InputDecoration(
-                          labelText: 'Address',
+                          labelText: 'KM.11, FORESTAL',
                           hintText: 'Enter your address (optional)',
                           prefixIcon: Icon(Icons.home),
                           border: OutlineInputBorder(),
@@ -87,6 +155,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                         children: <Widget>[
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _headache,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -102,6 +171,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                           ),
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _bodymalaise,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -122,6 +192,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                         children: <Widget>[
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _myalgia,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -137,6 +208,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                           ),
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _arthralgia,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -157,6 +229,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                         children: <Widget>[
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _retroOrbitalPain,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -172,6 +245,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                           ),
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _anorexia,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -192,6 +266,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                         children: <Widget>[
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _nausea,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -207,6 +282,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                           ),
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _vomiting,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -227,6 +303,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                         children: <Widget>[
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _diarrhea,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -242,6 +319,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                           ),
                           Expanded(
                             child: CheckboxListTile(
+                              enabled: false,
                               value: _flushedSkin,
                               onChanged: (value) {
                                 if (value == null) return;
@@ -259,24 +337,6 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                         ],
                       ),
                       _gap(),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4)),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              'Submit',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -290,3 +350,13 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
 }
 
 Widget _gap() => const SizedBox(height: 16);
+DropdownMenuItem<String> buildMenuItem(String sex) => DropdownMenuItem(
+      enabled: false,
+      value: sex,
+      child: Text(sex),
+    );
+
+DropdownMenuItem<String> buildMenuItemStatus(String status) => DropdownMenuItem(
+      value: status,
+      child: Text(status),
+    );
