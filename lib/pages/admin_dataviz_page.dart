@@ -25,24 +25,6 @@ class AdminDataVizPage extends StatefulWidget {
 class _AdminDataVizPageState extends State<AdminDataVizPage> {
   final List<bool> _selectedChoice = <bool>[true, false, false];
   bool vertical = false;
-  DateTimeRange? _selectedDateRange;
-  void _show() async {
-    final DateTimeRange? result = await showDateRangePicker(
-      context: context,
-      firstDate: DateTime(2022, 1, 1),
-      lastDate: DateTime.now(),
-      currentDate: DateTime.now(),
-      saveText: 'Done',
-    );
-
-    if (result != null) {
-      // Rebuild the UI
-      //print(result.start.toString());
-      setState(() {
-        _selectedDateRange = result;
-      });
-    }
-  }
 
   bool _isShow = false;
   @override
