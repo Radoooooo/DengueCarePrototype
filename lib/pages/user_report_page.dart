@@ -28,6 +28,49 @@ class _UserReportPageState extends State<UserReportPage> {
       appBar: AppBar(
         title: const Text('Report a case'),
         automaticallyImplyLeading: false,
+        actions: <Widget>[
+          PopupMenuButton<int>(
+            padding: EdgeInsets.zero,
+            onSelected: (item) => handleClick(item),
+            itemBuilder: (context) => [
+              PopupMenuItem<int>(
+                value: 0,
+                child: ListTile(
+                  leading: const Icon(
+                    Icons.translate,
+                    color: Colors.black,
+                    size: 26,
+                  ),
+                  title: const Text('Language'),
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text("Choose Language"),
+                      content: SingleChildScrollView(
+                        child: ListBody(
+                          children: <Widget>[
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text("English"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text("Tagalog"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text("Visayan"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: SafeArea(
         child: Form(
@@ -339,3 +382,14 @@ DropdownMenuItem<String> buildMenuItem(String sex) => DropdownMenuItem(
       value: sex,
       child: Text(sex),
     );
+
+void handleClick(int item) {
+  switch (item) {
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+  }
+}
