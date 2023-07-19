@@ -55,29 +55,6 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Status : "),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 4),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(8.0)),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                items: status.map(buildMenuItemStatus).toList(),
-                                value: valueStatus,
-                                hint: const Text('Status'),
-                                onChanged: (value) =>
-                                    setState(() => valueStatus = value),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      _gap(),
                       TextFormField(
                         enabled: false,
                         decoration: const InputDecoration(
@@ -332,6 +309,53 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                        ],
+                      ),
+                      _gap(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text("Status : "),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                items: status.map(buildMenuItemStatus).toList(),
+                                value: valueStatus,
+                                hint: const Text(' '),
+                                onChanged: (value) =>
+                                    setState(() => valueStatus = value),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      _gap(),
+                      _gap(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text("Status : "),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                items: status.map(buildMenuItemStatus).toList(),
+                                value: valueStatus,
+                                hint: const Text(' '),
+                                onChanged: (value) =>
+                                    setState(() => valueStatus = value),
+                              ),
                             ),
                           ),
                         ],
