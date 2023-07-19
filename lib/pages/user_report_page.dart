@@ -19,6 +19,8 @@ class _UserReportPageState extends State<UserReportPage> {
   bool _vomiting = false;
   bool _diarrhea = false;
   bool _flushedSkin = false;
+  bool _fever = false;
+  bool _lowPlateLet = false;
   String? value;
   final sex = ['Male', 'Female'];
 
@@ -56,10 +58,6 @@ class _UserReportPageState extends State<UserReportPage> {
                             TextButton(
                               onPressed: () {},
                               child: const Text("Tagalog"),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text("Visayan"),
                             ),
                           ],
                         ),
@@ -182,7 +180,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _headache = value;
                                 });
                               },
-                              title: const Text('Sakit ng ulo'),
+                              title: const Text('Headache'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -197,7 +195,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _bodymalaise = value;
                                 });
                               },
-                              title: const Text('Paghihina ng katawan'),
+                              title: const Text('Body Malaise'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -217,7 +215,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _myalgia = value;
                                 });
                               },
-                              title: const Text('Pananakit ng kalamnan'),
+                              title: const Text('Myalgia'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -232,7 +230,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _arthralgia = value;
                                 });
                               },
-                              title: const Text('Sakit ng kasukasuan'),
+                              title: const Text('Arthralgia'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -252,7 +250,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _retroOrbitalPain = value;
                                 });
                               },
-                              title: const Text('Pananakit ng mata sa likod'),
+                              title: const Text('Retro Orbital Pain'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -267,7 +265,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _anorexia = value;
                                 });
                               },
-                              title: const Text('Kawalan ng ganang kumain'),
+                              title: const Text('Anorexia'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -287,7 +285,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _nausea = value;
                                 });
                               },
-                              title: const Text('Pagkahilo o Sakit sa tiyan'),
+                              title: const Text('Nausea'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -302,7 +300,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _vomiting = value;
                                 });
                               },
-                              title: const Text('Pagsusuka'),
+                              title: const Text('Vomiting'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -322,7 +320,7 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _diarrhea = value;
                                 });
                               },
-                              title: const Text('Pagtatae'),
+                              title: const Text('Diarrhea'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -337,8 +335,42 @@ class _UserReportPageState extends State<UserReportPage> {
                                   _flushedSkin = value;
                                 });
                               },
-                              title: const Text(
-                                  'Pamumula ng balat, pangangati o pamamantal'),
+                              title: const Text('Rashes'),
+                              controlAffinity: ListTileControlAffinity.leading,
+                              dense: true,
+                              contentPadding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        //! row for On and off fever and Low PlateLet Count
+                        children: <Widget>[
+                          Expanded(
+                            child: CheckboxListTile(
+                              value: _fever,
+                              onChanged: (value) {
+                                if (value == null) return;
+                                setState(() {
+                                  _fever = value;
+                                });
+                              },
+                              title: const Text('On and Off Fever'),
+                              controlAffinity: ListTileControlAffinity.leading,
+                              dense: true,
+                              contentPadding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                          Expanded(
+                            child: CheckboxListTile(
+                              value: _lowPlateLet,
+                              onChanged: (value) {
+                                if (value == null) return;
+                                setState(() {
+                                  _lowPlateLet = value;
+                                });
+                              },
+                              title: const Text('Low platelet count'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
