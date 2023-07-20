@@ -19,10 +19,31 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
   bool _vomiting = true;
   bool _diarrhea = false;
   bool _flushedSkin = true;
+  final bool _fever = true;
+  final bool _lowPlateLet = true;
   String? value;
   final sex = ['Male', 'Female'];
   String? valueStatus;
   final status = ['Suspect', 'Probable', 'Confirmed'];
+  String? valueAdmitted;
+  final admitted = ["Yes", "No"];
+  String? valueRecovered;
+  final recovered = ["Yes", "No"];
+
+  DateTime selectedDateofSymptoms = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDateofSymptoms,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDateofSymptoms) {
+      setState(() {
+        selectedDateofSymptoms = picked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +161,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _headache = value;
                                 });
                               },
-                              title: const Text('Sakit ng ulo'),
+                              title: const Text('Headache'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -156,7 +177,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _bodymalaise = value;
                                 });
                               },
-                              title: const Text('Paghihina ng katawan'),
+                              title: const Text('Body Malaise'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -177,7 +198,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _myalgia = value;
                                 });
                               },
-                              title: const Text('Pananakit ng kalamnan'),
+                              title: const Text('Myalgia'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -193,7 +214,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _arthralgia = value;
                                 });
                               },
-                              title: const Text('Sakit ng kasukasuan'),
+                              title: const Text('Arthralgia'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -214,7 +235,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _retroOrbitalPain = value;
                                 });
                               },
-                              title: const Text('Pananakit ng mata sa likod'),
+                              title: const Text('Retro Orbital Pain'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -230,7 +251,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _anorexia = value;
                                 });
                               },
-                              title: const Text('Kawalan ng ganang kumain'),
+                              title: const Text('Anorexia'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -251,7 +272,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _nausea = value;
                                 });
                               },
-                              title: const Text('Pagkahilo o Sakit sa tiyan'),
+                              title: const Text('Nausea'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -267,7 +288,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _vomiting = value;
                                 });
                               },
-                              title: const Text('Pagsusuka'),
+                              title: const Text('Vomiting'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -288,7 +309,7 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _diarrhea = value;
                                 });
                               },
-                              title: const Text('Pagtatae'),
+                              title: const Text('Diarrhea'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -304,8 +325,44 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                   _flushedSkin = value;
                                 });
                               },
-                              title: const Text(
-                                  'Pamumula ng balat, pangangati o pamamantal'),
+                              title: const Text('Rashes'),
+                              controlAffinity: ListTileControlAffinity.leading,
+                              dense: true,
+                              contentPadding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        //! row for On and off fever AND Low platelet count
+                        children: <Widget>[
+                          Expanded(
+                            child: CheckboxListTile(
+                              enabled: false,
+                              value: _fever,
+                              onChanged: (value) {
+                                if (value == null) return;
+                                setState(() {
+                                  _diarrhea = value;
+                                });
+                              },
+                              title: const Text('On and off fever'),
+                              controlAffinity: ListTileControlAffinity.leading,
+                              dense: true,
+                              contentPadding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                          Expanded(
+                            child: CheckboxListTile(
+                              enabled: false,
+                              value: _lowPlateLet,
+                              onChanged: (value) {
+                                if (value == null) return;
+                                setState(() {
+                                  _flushedSkin = value;
+                                });
+                              },
+                              title: const Text('Low platelet count'),
                               controlAffinity: ListTileControlAffinity.leading,
                               dense: true,
                               contentPadding: const EdgeInsets.all(0),
@@ -337,11 +394,100 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                         ],
                       ),
                       _gap(),
+                      Container(
+                        margin: const EdgeInsets.all(3.0),
+                        padding: const EdgeInsets.all(3.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Text("Date of first symptom:"),
+                                const SizedBox(width: 16),
+                                ElevatedButton(
+                                  onPressed: () => _selectDate(context),
+                                  child: const Text('Select date'),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Text("Selected date:"),
+                                const SizedBox(width: 16),
+                                Text("${selectedDateofSymptoms.toLocal()}"
+                                    .split(' ')[0]),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      _gap(),
+                      Container(
+                        margin: const EdgeInsets.all(3.0),
+                        padding: const EdgeInsets.all(3.0),
+                        constraints: const BoxConstraints(maxWidth: 400),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Text("Patient Admitted? : "),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(8.0)),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton<String>(
+                                      items: admitted
+                                          .map(buildMenuItemAdmitted)
+                                          .toList(),
+                                      value: valueAdmitted,
+                                      hint: const Text(' '),
+                                      onChanged: (value) =>
+                                          setState(() => valueAdmitted = value),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [Text("If YES :")],
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    enabled: true,
+                                    decoration: const InputDecoration(
+                                      labelText: 'Hospital name',
+                                      prefixIcon:
+                                          Icon(Icons.local_hospital_rounded),
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       _gap(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Text("Status : "),
+                          const Text("Patient Recovered? : "),
                           Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 4),
@@ -350,11 +496,13 @@ class _AdminReportCasePageState extends State<AdminReportCasePage> {
                                 borderRadius: BorderRadius.circular(8.0)),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
-                                items: status.map(buildMenuItemStatus).toList(),
-                                value: valueStatus,
+                                items: recovered
+                                    .map(buildMenuItemRecovered)
+                                    .toList(),
+                                value: valueRecovered,
                                 hint: const Text(' '),
                                 onChanged: (value) =>
-                                    setState(() => valueStatus = value),
+                                    setState(() => valueRecovered = value),
                               ),
                             ),
                           ),
@@ -383,4 +531,14 @@ DropdownMenuItem<String> buildMenuItem(String sex) => DropdownMenuItem(
 DropdownMenuItem<String> buildMenuItemStatus(String status) => DropdownMenuItem(
       value: status,
       child: Text(status),
+    );
+DropdownMenuItem<String> buildMenuItemAdmitted(String admitted) =>
+    DropdownMenuItem(
+      value: admitted,
+      child: Text(admitted),
+    );
+DropdownMenuItem<String> buildMenuItemRecovered(String recovered) =>
+    DropdownMenuItem(
+      value: recovered,
+      child: Text(recovered),
     );
