@@ -59,6 +59,10 @@ class _UserReportPageState extends State<UserReportPage> {
                               onPressed: () {},
                               child: const Text("Tagalog"),
                             ),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text("Bisaya"),
+                            ),
                           ],
                         ),
                       ),
